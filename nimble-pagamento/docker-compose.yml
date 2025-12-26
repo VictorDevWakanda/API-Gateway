@@ -1,0 +1,27 @@
+services:
+  postgres_container:
+    image: postgres:latest
+    ports:
+      - "5544:5432"  # Porta alterada para evitar conflito
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nimbledb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "-f", "pg_isready -U postgres"]
+      start_period: 60s
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      disable: false
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+
+  
+
+

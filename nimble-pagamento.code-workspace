@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "nimble-pagamento"
+		},
+		{
+			"path": "nimble-gateway"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "disabled",
+		"java.format.settings.url": "esbenp.prettier-vscode"
+	}
+}
