@@ -6,14 +6,12 @@ Bem-vindo ao repositório principal da API Nimble, uma solução completa de pag
 
 O repositorio Nimble é dividida em dois componentes principais:
 
-1. **Nimble Gateway** - O cérebro da operação, responsável por orquestrar todas as comunicações
-2. **Nimble Pagamentos** - O coração do sistema, especializado em processamento financeiro
+1. **[Nimble Gateway](https://github.com/VictorDevWakanda/API-Gateway/tree/main/nimble-gateway)** - O cérebro da operação, responsável por orquestrar todas as comunicações
+2. **[Nimble Pagamentos](https://github.com/VictorDevWakanda/API-Gateway/tree/main/nimble-pagamento)** - O coração do sistema, especializado em processamento financeiro
 
-**📚 Documentação Detalhada**
-Cada componente possui sua própria documentação detalhada:
+Cada componente possui sua própria documentação detalhada.
 
-[Nimble Gateway](https://github.com/VictorDevWakanda/API-Gateway/tree/main/nimble-gateway)
-[Nimble Pagamentos](https://github.com/VictorDevWakanda/API-Gateway/tree/main/nimble-pagamento)
+
 
 
 ## Autor
