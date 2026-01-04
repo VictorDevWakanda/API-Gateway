@@ -66,7 +66,7 @@ mvn clean install
 
 A aplicação iniciará automaticamente com as seguintes configurações:
 
-- **Porta:** 8080
+- **Porta:** 8081
 - **Context Path:** `/nimble-pagamento/api`
 - **Database:** PostgreSQL (via Docker)
 - **Documentação:** Swagger UI disponível
@@ -74,14 +74,14 @@ A aplicação iniciará automaticamente com as seguintes configurações:
 ## Documentação da API
 
 ### 📊 Health Check
-**http://localhost:8080/nimble-pagamento/api/actuator/health**
+**http://localhost:8081/nimble-pagamento/api/actuator/health**
 
 ### 🌐 Swagger UI
 Acesse a documentação interativa da API em:
-**http://localhost:8080/nimble-pagamento/api/swagger-ui.html**
+**http://localhost:8081/nimble-pagamento/api/swagger-ui.html**
 
 ### 🔗 API Base URL
-**http://localhost:8080/nimble-pagamento/api**
+**http://localhost:8081/nimble-pagamento/api**
 
 ## Postman Collection
 
@@ -91,7 +91,7 @@ Para facilitar os testes, foi criada uma collection completa do Postman com todo
 
 1. **Importe o arquivo** `nimbleCollection.json` no Postman
 2. **Configure as variáveis de ambiente:**
-   - `baseUrl`: http://localhost:8080/nimble-pagamento/api
+   - `baseUrl`: http://localhost:8081/nimble-pagamento/api
    - `token`: Token JWT obtido após login
    - `userId`: UUID do usuário
    - `cobrancaId`: UUID da cobrança
@@ -329,7 +329,7 @@ Content-Type: application/json
 - ✅ **Clean Code:** SOLID, DDD e boas práticas
 - ✅ **Documentação:** Swagger UI atualizada
 - ✅ **Testes:** Testes unitários e de integração com cobertura JaCoCo
-- ❌ **OBS:** Os testes não puderam ser concluidos pois faltou tempo para a conclusão!
+
 
 ## 📊 Testes e Cobertura de Código
 
