@@ -11,9 +11,6 @@ springdoc:
     operationsSorter: alpha
     tagsSorter: alpha
 
-logging:
-  level:
-    com.zaxxer.hikari: DEBUG
 
 management:
   endpoints:
