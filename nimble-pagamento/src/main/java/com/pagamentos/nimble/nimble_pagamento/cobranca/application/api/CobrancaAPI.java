@@ -36,10 +36,10 @@ public class CobrancaAPI {
     @CobrancaAPIDocs.CadastraCobranca
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public CobrancaResponse postCriaCobranca(@RequestParam UUID IdUsuarioOriginador,
+    public CobrancaResponse postCriaCobranca(@RequestParam UUID idUsuarioOriginador,
             @RequestBody @Valid CobrancaRequest cobrancaRequest) {
         log.info("[Inicia] CobrancaAPI - criaCobranca");
-        CobrancaResponse cobrancaCriada = cobrancaService.criaCobranca(IdUsuarioOriginador, cobrancaRequest);
+        CobrancaResponse cobrancaCriada = cobrancaService.criaCobranca(idUsuarioOriginador, cobrancaRequest);
         log.debug("[Finaliza] CobrancaAPI - criaCobranca");
         return cobrancaCriada;
     }
@@ -59,11 +59,11 @@ public class CobrancaAPI {
     @GetMapping("/originador")
     @ResponseStatus(HttpStatus.OK)
     public PageResponse<CobrancaDestinatarioListResponse> getListaCobrancasCriadas(
-            @RequestParam UUID IdusuarioOriginador, @PageableDefault(page = 0, size = 10) Pageable pageable,
+            @RequestParam UUID idusuarioOriginador, @PageableDefault(page = 0, size = 10) Pageable pageable,
             @RequestParam(required = false) StatusCobranca status) {
         log.info("[Inicia] CobrancaAPI - listaCobrancasCriadas");
         Page<CobrancaDestinatarioListResponse> cobrancas = cobrancaService
-                .listaCobrancasCriadas(IdusuarioOriginador, pageable, status);
+                .listaCobrancasCriadas(idusuarioOriginador, pageable, status);
         log.debug("[Finaliza] CobrancaAPI - listaCobrancasCriadas");
         return new PageResponse<>(cobrancas);
     }

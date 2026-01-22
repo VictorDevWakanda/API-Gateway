@@ -16,11 +16,11 @@ import com.pagamentos.nimble.nimble_pagamento.cobranca.domain.StatusCobranca;
 
 public interface CobrancaService {
 
-        CobrancaResponse criaCobranca(UUID IdUsuarioOriginador, CobrancaRequest cobrancaRequest);
+        CobrancaResponse criaCobranca(UUID idUsuarioOriginador, CobrancaRequest cobrancaRequest);
 
         CobrancaDetalhadaResponse buscaCobrancaPorId(UUID idCobranca, UUID idUsuarioSolicitante);
 
-        Page<CobrancaDestinatarioListResponse> listaCobrancasCriadas(UUID IdusuarioOriginador, Pageable pageable,
+        Page<CobrancaDestinatarioListResponse> listaCobrancasCriadas(UUID idusuarioOriginador, Pageable pageable,
                         StatusCobranca status);
 
         Page<CobrancaOriginadorListResponse> listaCobrancasRecebidas(UUID idUsuarioSolicitante, Pageable pageable,
