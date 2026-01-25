@@ -4,6 +4,7 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 
 import com.gateway.nimble.filter.JwtAuthenticationFilter;
 
@@ -17,21 +18,29 @@ public class GatewayConfig {
         @Bean
         public RouteLocator customRouteLocator(RouteLocatorBuilder builder, JwtAuthenticationFilter jwt) {
                 return builder.routes()
-                                .route("usuario-cadastro", r -> r.path("/nimble-pagamento/api/usuario")
-                                                .filters(f -> f.addRequestHeader(HEADER_NAME, HEADER_VALUE)) // sem jwt
-                                                .uri(DEFAULT_URL))
-                                .route("login", r -> r.path("/nimble-pagamento/api/usuario/autenticacao/login")
+                                // Rotas publicas (sem JWT)
+                                .route("usuario-cadastro", r -> r.path("/nimble-pagamento/api/usuario").and()
+                                                .method(HttpMethod.POST)
                                                 .filters(f -> f.addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
-                                .route("usuario-protegido", r -> r.path("/nimble-pagamento/api/usuario/**")
-                                                .filters(f -> f.filter(jwt)
-                                                                .addRequestHeader(HEADER_NAME, HEADER_VALUE))
+                                .route("login", r -> r.path("/nimble-pagamento/api/usuario/autenticacao/login").and()
+                                                .method(HttpMethod.POST)
+                                                .filters(f -> f.addRequestHeader(HEADER_NAME, HEADER_VALUE))
+                                                .uri(DEFAULT_URL))
+                                .route("swagger", r -> r.path("/nible-pagamento/api/v3/api-docs",
+                                                "/nible-pagamento/api/swagger",
+                                                "/nimble-pagamento/api/swagger/**")
+                                                .filters(f -> f.addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
 
-                                .route("cobranca", r -> r.path("/nimble-pagamento/cobrancas/**")
+                                // Rotas protegidas (com JWT)
+                                .route("usuario-protegido", r -> r.path("/nimble-pagamento/api/usuario/**")
                                                 .filters(f -> f.filter(jwt).addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
-                                .route("cobranca", r -> r.path("/nimble-pagamento/cobrancas")
+                                .route("cobranca-sub", r -> r.path("/nimble-pagamento/cobrancas/**")
+                                                .filters(f -> f.filter(jwt).addRequestHeader(HEADER_NAME, HEADER_VALUE))
+                                                .uri(DEFAULT_URL))
+                                .route("cobranca-root", r -> r.path("/nimble-pagamento/cobrancas")
                                                 .filters(f -> f.filter(jwt).addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
                                 .build();
