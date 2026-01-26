@@ -37,10 +37,10 @@ public class GatewayConfig {
                                 .route("usuario-protegido", r -> r.path("/nimble-pagamento/api/usuario/**")
                                                 .filters(f -> f.filter(jwt).addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
-                                .route("cobranca-sub", r -> r.path("/nimble-pagamento/cobrancas/**")
+                                .route("cobranca-sub", r -> r.path("/nimble-pagamento/api/cobrancas/**")
                                                 .filters(f -> f.filter(jwt).addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
-                                .route("cobranca-root", r -> r.path("/nimble-pagamento/cobrancas")
+                                .route("cobranca-root", r -> r.path("/nimble-pagamento/api/cobrancas")
                                                 .filters(f -> f.filter(jwt).addRequestHeader(HEADER_NAME, HEADER_VALUE))
                                                 .uri(DEFAULT_URL))
                                 .build();

@@ -1,9 +1,9 @@
 package com.gateway.nimble.filter;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -27,22 +27,19 @@ public class RateLimitingFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        String ip = Optional.ofNullable(exchange.getRequest().getHeaders().getFirst("X-Forwarded-For"))
-                .map(i -> i.split(",")[0].trim())
-                .orElseGet(() -> Optional.ofNullable(exchange.getRequest().getRemoteAddress())
-                        .map(addr -> addr.getAddress().getHostAddress())
-                        .orElse("unknown"));
-        Deque<Long> q = buckets.computeIfAbsent(ip, k -> new ArrayDeque<>());
+        String ip = Optional.ofNullable(exchange.getRequest().getRemoteAddress())
+                .map(addr -> addr.getAddress().getHostAddress())
+                .orElse("unknown");
+        String key = ip + ":" + exchange.getRequest().getPath().value();
+        Deque<Long> q = buckets.computeIfAbsent(key, k -> new ConcurrentLinkedDeque<>());
         long now = System.currentTimeMillis();
-        synchronized (q) {
-            while (!q.isEmpty() && now - q.peekFirst() > WINDOW_MS)
-                q.pollFirst();
-            if (q.size() >= MAX) {
-                exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
-                return exchange.getResponse().setComplete();
-            }
-            q.addLast(now);
+        q.removeIf(t -> now - t > WINDOW_MS);
+        if (q.size() >= MAX) {
+            exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
+            return exchange.getResponse().setComplete();
         }
+        q.addLast(now);
+
         return chain.filter(exchange);
     }
 }
