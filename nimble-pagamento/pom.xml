@@ -55,6 +55,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 
 		<!-- OpenAPI / Swagger -->
 		<dependency>
@@ -78,8 +83,9 @@
 			<artifactId>flyway-database-postgresql</artifactId>
 		</dependency>
 
-		<!--SpringSecurity Crypt / JWT - Autenticação-->
-		
+		<!--SpringSecurity
+		Crypt / JWT - Autenticação-->
+
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
@@ -90,7 +96,6 @@
 			<artifactId>spring-security-crypto</artifactId>
 		</dependency>
 
-		
 
 		<!-- WebFlux - Necessário para WebClient -->
 		<dependency>
