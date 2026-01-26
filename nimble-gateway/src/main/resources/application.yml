@@ -5,3 +5,8 @@ security:
   token:
     jwt:
       secret: ${JWT_SECRET:f3a1c2d4e5b6a7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2} # Chave secreta para assinar o token
+
+spring:
+  cloud:
+    gateway:
+      forwarded-headers-strategy: framework
