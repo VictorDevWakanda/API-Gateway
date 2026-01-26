@@ -31,7 +31,7 @@ public class LoginAttemptService {
 
         if (tentativa.obterContagem() >= MAX_ATTEMPTS) {
             tentativa.bloquear();
-            log.warn("Conta/IP bloqueada por excesso de tentativas: {}", chave);
+            log.warn("Conta/IP bloqueada por excesso de tentativas.\nIP: {}\nTente novamente mais tarde.", chave);
         }
     }
 
