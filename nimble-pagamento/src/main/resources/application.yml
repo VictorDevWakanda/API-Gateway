@@ -16,7 +16,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: health, info, metrics, prometheus
   endpoint:
     health:
       show-details: always
@@ -34,6 +34,7 @@ spring:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5544/nimbledb}
     username: ${DATASOURCE_USER:postgres}
     password: ${DATASOURCE_PASS:postgres}
+    type: com.zaxxer.hikari.HikariDataSource
     hikari:
       pool-name: SpringBootJPAHikariCP
       minimum-idle: 15
