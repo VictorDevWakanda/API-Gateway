@@ -18,6 +18,12 @@ management:
   endpoint:
     health:
       show-details: always
+  
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+        
 logging:
   level:
     "[com.gateway.nimble]": ${LOG_LEVEL:DEBUG} # Atualmente imprime info/debug. Caso queira apenas o info, mudar para INFO.
