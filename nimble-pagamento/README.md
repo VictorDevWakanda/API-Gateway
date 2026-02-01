@@ -32,7 +32,6 @@ Este projeto é uma API REST desenvolvida para simular um gateway de pagamentos 
 - [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Lombok](https://projectlombok.org/download)
 - [Docker](https://docs.docker.com/engine/install/)
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [Postman](https://www.postman.com/downloads/) (para testar a API)
 
 ## Instalação
