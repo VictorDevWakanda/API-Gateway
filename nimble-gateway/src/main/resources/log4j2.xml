@@ -1,0 +1,24 @@
+<Configuration status="WARN">
+  <Appenders>
+    <!-- Arquivo em JSON para Promtail/Loki -->
+    <File name="FileGateway" fileName="./gateway-logs/app.log">  <!-- fileName="/var/log/gateway/app.log"-->
+      <JsonLayout compact="true" eventEol="true" />
+    </File>
+
+    <!-- Console no formato padrão Spring Boot -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level %pid --- [%15.15t] %-40.40logger{39} : %msg%n" />
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <Logger name="com.gateway.nimble" level="info" additivity="false">
+      <AppenderRef ref="FileGateway" />
+      <AppenderRef ref="Console" />
+    </Logger>
+    <Root level="info">
+      <AppenderRef ref="FileGateway" />
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
+</Configuration>
