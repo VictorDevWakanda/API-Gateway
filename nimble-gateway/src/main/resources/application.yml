@@ -26,4 +26,4 @@ management:
         
 logging:
   level:
-    "[com.gateway.nimble]": ${LOG_LEVEL:DEBUG} # Atualmente imprime info/debug. Caso queira apenas o info, mudar para INFO.
+    "[com.gateway.nimble]": ${LOG_LEVEL:INFO} # Atualmente imprime info/debug. Caso queira apenas o info, mudar para INFO.
