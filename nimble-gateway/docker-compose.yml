@@ -1,0 +1,14 @@
+services:
+  promtail:
+    image: grafana/promtail:2.9.2
+    container_name: promtail-pagamento
+    command: -config.file=/etc/promtail/config.yml
+    volumes:
+      - ./gateway-logs:/var/log/gateway:ro
+      - ./src/main/resources/promtail-config.yml:/etc/promtail/config.yml:ro
+      - ./src/main/resources:/positions
+    depends_on:
+      - loki
+volumes:
+  gateway-logs:
+  promtail-positions:
