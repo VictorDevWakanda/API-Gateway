@@ -72,4 +72,4 @@ jpa:
 
 logging:
   level:
-    "[com.pagamentos.nimble]": ${LOG_LEVEL:DEBUG} # Atualmente imprime info/debug. Caso queira apenas o info, mudar para INFO.
+    "[com.pagamentos.nimble]": ${LOG_LEVEL:INFO} # Atualmente imprime info/debug. Caso queira apenas o info, mudar para INFO.
